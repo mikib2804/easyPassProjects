@@ -1,4 +1,6 @@
+"use client";
 import { BadgeCheck, MessageCircle, Star, Users } from "lucide-react";
 import { Reveal } from "./Reveal"; import { SectionHeading } from "./SectionHeading";
-const benefits = [["Client-Focused", "We listen, understand, and build solutions that fit your goals.", Users], ["Clear Communication", "We keep you updated throughout every step of the project.", MessageCircle], ["Long-Term Support", "We don't disappear after delivery — we're here when you need us.", BadgeCheck], ["Passion for Quality", "We love what we do and it shows in the quality we deliver.", Star]] as const;
-export function Benefits() { return <section id="benefits" className="section-wrap block-section"><Reveal><SectionHeading eyebrow="WHY EASYPASS" title="Why Work With Us?" /></Reveal><div className="benefit-grid">{benefits.map(([title, text, Icon], i) => <Reveal key={title} delay={i * .08} className="benefit-item"><div className="benefit-icon"><Icon /></div><div><h3>{title}</h3><p>{text}</p></div></Reveal>)}</div></section>; }
+import { useLanguage } from "./LanguageProvider";
+const icons=[Users,MessageCircle,BadgeCheck,Star];
+export function Benefits(){const {text}=useLanguage();return <section id="benefits" className="section-wrap block-section"><Reveal><SectionHeading eyebrow={text.benefitsTag} title={text.benefitsTitle}/></Reveal><div className="benefit-grid">{text.benefits.map(([title,description],i)=>{const Icon=icons[i];return <Reveal key={title} delay={i*.08} className="benefit-item"><div className="benefit-icon"><Icon/></div><div><h3>{title}</h3><p>{description}</p></div></Reveal>})}</div></section>}

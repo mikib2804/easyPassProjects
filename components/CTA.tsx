@@ -4,11 +4,13 @@ import { FormEvent, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { GlowCard } from "./GlowCard";
 import { Reveal } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
 
 const RECIPIENT_EMAIL = "hello@easypassprojects.com";
 const EMAIL_SUBJECT = "New work message from EasyPassProjects website";
 
 export function CTA() {
+  const { text } = useLanguage();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
@@ -32,20 +34,19 @@ export function CTA() {
         <GlowCard className="cta-card">
           <div className="cta-layout">
             <div className="cta-copy">
-              <span className="eyebrow">YOUR NEXT IDEA STARTS HERE</span>
+            <span className="eyebrow">{text.ctaTag}</span>
               <h2>
-                Have an Idea?
+              {text.ctaA}
                 <br />
-                <span className="gradient-text">Let&apos;s Build It.</span>
+              <span className="gradient-text">{text.ctaB}</span>
               </h2>
               <p>
-                Tell us what you&apos;re imagining and we&apos;ll turn it into a
-                real web application.
+              {text.ctaText}
               </p>
             </div>
             <form className="cta-form" onSubmit={handleSubmit}>
               <label>
-                <span>Your email</span>
+              <span>{text.email}</span>
                 <input
                   type="email"
                   value={email}
@@ -56,17 +57,17 @@ export function CTA() {
                 />
               </label>
               <label>
-                <span>Tell us about your project</span>
+              <span>{text.project}</span>
                 <textarea
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
-                  placeholder="What would you like us to build?"
+                placeholder={text.placeholder}
                   rows={5}
                   required
                 />
               </label>
               <button className="button primary" type="submit">
-                Send Project Message <ArrowRight />
+              {text.send} <ArrowRight />
               </button>
             </form>
           </div>

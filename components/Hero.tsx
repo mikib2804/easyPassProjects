@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, Atom, Braces, Hexagon, Wind } from "lucide-react";
 import { HeroVisual } from "./HeroVisual";
 import { techLogos } from "@/lib/techLogos";
+import { useLanguage } from "./LanguageProvider";
 const tech = [
   { n: "React", I: Atom },
   { n: "TypeScript", I: Braces },
@@ -13,6 +14,7 @@ const tech = [
 ];
 
 export function Hero() {
+  const { text } = useLanguage();
   const reduced = useReducedMotion();
   return (
     <section id="home" className="hero section-wrap">
@@ -32,10 +34,10 @@ export function Hero() {
             show: { opacity: 1, y: 0 },
           }}
         >
-          CUSTOM WEB APPLICATIONS
+          {text.heroTag}
         </motion.p>
         <h1>
-          {["We Build Web Apps", "That Make It Easy", "To Succeed"].map(
+          {text.hero.map(
             (line, i) => (
               <motion.span
                 key={line}
@@ -54,18 +56,17 @@ export function Hero() {
           className="hero-description"
           variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
         >
-          At EasyPassProjects, we turn ideas into powerful, scalable, and
-          beautiful web applications that drive results and growth.
+          {text.heroText}
         </motion.p>
         <motion.div
           className="hero-actions"
           variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
         >
           <a href="#contact" className="button primary">
-            Start Your Project <ArrowRight />
+            {text.build} <ArrowRight />
           </a>
           <a href="#services" className="button secondary">
-            See Our Work
+            {text.work}
           </a>
         </motion.div>
         <motion.div

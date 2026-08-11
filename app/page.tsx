@@ -6,10 +6,11 @@ import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
 import { Services } from "@/components/Services";
 import { SpecialFeatures } from "@/components/SpecialFeatures";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
+    <LanguageProvider><main className="overflow-hidden">
       <Navbar />
       <Hero />
       <SpecialFeatures />
@@ -18,6 +19,6 @@ export default function Home() {
       <Benefits />
       <CTA />
       <Footer />
-    </main>
+    </main></LanguageProvider>
   );
 }

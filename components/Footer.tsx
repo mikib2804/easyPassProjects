@@ -1,19 +1,17 @@
+"use client";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Logo } from "./Logo";
 import Image from "next/image";
-const links = [
-  ["Home", "#home"],
-  ["About", "#about"],
-  ["Services", "#services"],
-  ["Benefits", "#benefits"],
-  ["Contact", "#contact"],
-];
+import { useLanguage } from "./LanguageProvider";
+const hrefs = ["#home", "#about", "#services", "#benefits", "#contact"];
 export function Footer() {
+  const { text } = useLanguage();
+  const links = text.nav.map((label, index) => [label, hrefs[index]]);
   return (
     <footer className="footer section-wrap">
       <div>
         <Logo />
-        <p>Building digital experiences made to last.</p>
+        <p>{text.footer}</p>
       </div>
       <nav aria-label="Footer navigation">
         {links.map(([label, href]) => (
@@ -34,11 +32,8 @@ export function Footer() {
         </a>
       </div>
       <div className="footer-copyright">
-        <a
-          href="#home"
-          className="footer-copyright-link"
-        >
-          © {new Date().getFullYear()} EasyPassProjects. All rights reserved.
+        <a href="#home" className="footer-copyright-link">
+          © {new Date().getFullYear()} EasyPassProjects. {text.rights}
           <Image
             src="/easyPassProjects_noText.png"
             alt="EasyPassProjects logo"

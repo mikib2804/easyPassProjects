@@ -52,3 +52,10 @@ a { color: inherit; text-decoration: none; } p { color: var(--muted); line-heigh
 .cta-form .button { justify-self: center; margin-top: 5px; cursor: pointer; }
 @media (max-width: 800px) { .cta-layout { grid-template-columns: 1fr; gap: 36px; text-align: center; } .cta-copy p { margin-inline: auto; } }
 @media (max-width: 600px) { .cta-form .button { width: 100%; } }
+
+.language-switch { display: inline-flex; align-items: center; padding: 3px; border: 1px solid rgba(37,99,235,.55); border-radius: 9px; background: rgba(2,6,23,.7); direction: ltr; }
+.language-switch button { border: 0; border-radius: 6px; padding: 6px 8px; background: transparent; color: #94a3b8; font-size: .68rem; font-weight: 700; cursor: pointer; }
+.language-switch button.active { color: #fff; background: linear-gradient(120deg,rgba(0,213,255,.38),rgba(109,40,255,.5)); }
+[dir="rtl"] .hero-copy, [dir="rtl"] .cta-copy, [dir="rtl"] .cta-form, [dir="rtl"] .feature-item, [dir="rtl"] .service-card, [dir="rtl"] .benefit-item, [dir="rtl"] .founder-card { text-align: right; }
+[dir="rtl"] .button svg { transform: scaleX(-1); }
+@media (max-width: 900px) { .language-switch { margin-inline-start: auto; margin-inline-end: 8px; } }

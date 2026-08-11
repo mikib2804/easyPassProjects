@@ -2,15 +2,12 @@
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
+import { useLanguage } from "./LanguageProvider";
 
-const links = [
-  ["Home", "#home"],
-  ["About Us", "#about"],
-  ["Services", "#services"],
-  ["Benefits", "#benefits"],
-  ["Contact", "#contact"],
-];
+const hrefs = ["#home", "#about", "#services", "#benefits", "#contact"];
 export function Navbar() {
+  const { language, setLanguage, text } = useLanguage();
+  const links = text.nav.map((label, index) => [label, hrefs[index]]);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -31,9 +28,10 @@ export function Navbar() {
           ))}
         </div>
         <a href="#contact" className="button primary nav-cta">
-          Start Your Project
+          {text.build}
           <ArrowRight size={17} />
         </a>
+        <div className="language-switch" aria-label="Select language"><button className={language === "en" ? "active" : ""} onClick={() => setLanguage("en")}>EN</button><button className={language === "he" ? "active" : ""} onClick={() => setLanguage("he")}>עב</button></div>
         <button
           className="menu-button"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -51,7 +49,7 @@ export function Navbar() {
             </a>
           ))}
           <a href="#contact" className="button primary">
-            Let&apos;s Build <ArrowRight size={17} />
+            {text.build} <ArrowRight size={17} />
           </a>
         </div>
       )}
